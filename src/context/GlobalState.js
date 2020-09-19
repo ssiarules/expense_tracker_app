@@ -12,7 +12,7 @@ import AppReducer from './AppReducer';
         each transaction will have an ID, text value and amount(if its an expense it will be -number and income it will be +number)
 
 */
-const initialstate = {
+const initialState = {
     transactions: [
     { id: 1, text: 'Flower', amount: -20 },
     { id: 2, text: 'Salary', amount: 300 },
@@ -34,6 +34,7 @@ In order for other components to have access to our store or to our Global State
   */      
 
 export const GlobalProvider = ({ children }) => {
+    // eslint-disable-next-line no-undef
     const [ state, dispatch] = useReducer(AppReducer, initialState);
 
     return( <GlobalContext.Provider value={{
