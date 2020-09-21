@@ -1,7 +1,5 @@
 import React, {useState, useContext} from 'react';
 import { GlobalContext}  from '../context/GlobalState';
-
-
 /* 
     with the form we need to add some component level state, the reason for that is because
     we have inputs that needs to be part of our state. 
@@ -16,7 +14,6 @@ import { GlobalContext}  from '../context/GlobalState';
     6. If you want to check that state is working properly on your browser go to inspect and react components tab and click
     on addTransaction component, start typing into the fields and you we begin to see that state capture your inputs. 
 */
-
 export const AddTransaction = () => {
     //Component level state 
     const [text, setText] = useState('');
