@@ -13,12 +13,7 @@ import AppReducer from './AppReducer';
 
 */
 const initialState = {
-    transactions: [
-    { id: 1, text: 'Flower', amount: -20 },
-    { id: 2, text: 'Salary', amount: 300 },
-    { id: 3, text: 'Book', amount: -10 },
-    { id: 4, text: 'Camera', amount: 150 }
- ]
+    transactions: []
 }
 
 //Create our global context using this createContext that we imported from React.
@@ -34,11 +29,32 @@ In order for other components to have access to our store or to our Global State
   */      
 
 export const GlobalProvider = ({ children }) => {
-    // eslint-disable-next-line no-undef
     const [ state, dispatch] = useReducer(AppReducer, initialState);
 
+    //Actions - Making calls to our reducer 
+    /* 1. Create a function that takes in ID (we need to know which transaction to delete based on the ID)
+        2. We will use dispatch(it was bought in from useReducer above). Dispatch to our reducer an object
+        3. inside our object we will have a type for the action we want to happen
+        4. Include Payload - any data we want to send to it, which will be the id
+    */
+    function deleteTransaction(id) {
+        dispatch({
+            type: 'DELETE_TRANSACTION',
+            payload: id
+        })
+    }
+
+    function addTransaction(transaction) {
+        dispatch({
+            type: 'ADD_TRANSACTION',
+            payload: transaction
+        })
+    }
+
     return( <GlobalContext.Provider value={{
-        transactions: state.transactions
+        transactions: state.transactions,
+        deleteTransaction,
+        addTransaction
     }}>
         {children}
     </GlobalContext.Provider>)
